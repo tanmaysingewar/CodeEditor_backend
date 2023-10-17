@@ -1,7 +1,7 @@
 const express = require('express')
 const { demo, createAdmin, loginAdmin, getAllLabs, createLab, updateLab, deleteLab, getLabById, createFaculty, updateFaculty, deleteFaculty, getAllFaculties, getFacultyByNameOrEmailOrContact, updateStudent, deleteStudent, getStudentByNameOrEmailOrContactOrRegNoOrRollNo, getAllStudents, noOfPracticalsOfLab, noOfStudentsOfLab } = require('../controllers/admin')
 const { checkAdminToken } = require('../middlewares/admin')
-const { analysisStatus, analysisByPracticalId, searchAnalysisOfStudents, practicalListByLabId } = require('../controllers/analysis')
+const { analysisStatus, analysisByPracticalId, searchAnalysisOfStudents, practicalListByLabId, resetPractical } = require('../controllers/analysis')
 const router = express.Router()
 
 // Admin auth routes
@@ -57,6 +57,8 @@ router.get('/analysis/practical',checkAdminToken,analysisByPracticalId)
 router.get('/analysis/search',checkAdminToken,searchAnalysisOfStudents)
 // get practical list by lab id
 router.get('/practical/list',checkAdminToken,practicalListByLabId)
+//delete record
+router.delete('/reset/record',checkAdminToken,resetPractical)
 
 
 module.exports = router;
